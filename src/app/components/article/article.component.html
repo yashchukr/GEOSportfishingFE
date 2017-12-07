@@ -1,0 +1,81 @@
+<div class="container">
+    <h1>Angular 2 CRUD Operation</h1>
+
+    <h3 *ngIf="articleIdToUpdate; else create">
+      Update Article for Id: {{articleIdToUpdate}}
+    </h3>
+
+    <ng-template #create>
+      <h3> Create New Article </h3>
+    </ng-template>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <form [formGroup]="articleForm" (ngSubmit)="onArticleFormSubmit()">
+          <div class="form-group">
+            <label class="col-form-label" for="formGroupEnterTitle">Enter Title</label>
+            <input type="text" class="form-control" id="formGroupEnterTitle" placeholder="Title input" formControlName="title">
+            <label *ngIf="articleForm.get('title').invalid && processValidation" [ngClass] = "'error'"> Title is required. </label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label" for="formGroupEnterCategory">Enter Category</label>
+            <input type="text" class="form-control" id="formGroupEnterCategory" placeholder="Category input" formControlName="category">
+            <label *ngIf="articleForm.get('category').invalid && processValidation" [ngClass] = "'error'"> Category is required. </label>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success" *ngIf="!articleIdToUpdate">CREATE</button>
+            <button class="btn btn-warning" *ngIf="articleIdToUpdate">UPDATE</button>
+            <button class="btn btn-light" (click)="backToCreateArticle()" *ngIf="articleIdToUpdate">Go Back</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  <br/>
+
+  <div *ngIf="statusCode; else processing">
+    <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+     <span class="badge badge-success"> Article added successfully.</span>
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+      <span class="badge badge-success">Article already exists.</span>
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+      <span class="badge badge-success">Article updated successfully.</span>
+    </div>
+    <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+      <span class="badge badge-success">Article deleted successfully.</span>
+    </div>
+    <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+      <span class="badge badge-danger">Internal Server Error.</span>
+    </div>
+  </div>
+
+  <ng-template #processing>
+    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+  </ng-template>
+
+</div>
+
+
+
+
+<div class="container">
+  <h3>Article Details</h3>
+  <table class="table table-hover">
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let article of allArticles" >
+      <th scope="row">{{article.articleId}}</th>
+      <td>{{article.title}}</td>
+      <td>{{article.category}}</td>
+      <td><button class="btn btn-warning btn-sm" type="button" (click)="loadArticleToEdit(article.articleId)">Edit</button> </td>
+      <td><button class="btn btn btn-danger btn-sm" type="button" (click)="deleteArticle(article.articleId)">Delete</button></td>
+    </tr>
+  </table>
+</div>
