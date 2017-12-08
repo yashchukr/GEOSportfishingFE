@@ -17,6 +17,8 @@ import { AppRouters } from './app.routers';
 import { ArticleComponent } from './components/article/article.component';
 import { ArticleService } from './components/article/article.service';
 
+import { apiKey } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,7 @@ import { ArticleService } from './components/article/article.service';
     ReactiveFormsModule,
     RouterModule.forRoot(AppRouters),
     AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyD12SCHQuKvio_rOlz0Opgxo21Jd3xP1do'
+        apiKey
     })
   ],
   providers: [
