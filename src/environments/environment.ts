@@ -6,3 +6,5 @@
 export const environment = {
   production: false
 };
+
+export const apiKey = 'AIzaSyD12SCHQuKvio_rOlz0Opgxo21Jd3xP1do';
