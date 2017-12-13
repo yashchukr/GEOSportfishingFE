@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HomeComponent } from './components/home/home.component';
 import { MapComponent } from './shared-components/map/map.component';
+import 'rxjs/Rx';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -18,6 +19,8 @@ import { ArticleComponent } from './components/article/article.component';
 import { ArticleService } from './components/article/article.service';
 
 import { apiKey } from '../environments/environment';
+import { FishingPlaceComponent } from './components/home/fishing-place/fishing-place.component';
+import { FishingPlaceService} from './components/home/fishing-place/fishing-place.service';
 
 @NgModule({
   declarations: [
@@ -27,10 +30,11 @@ import { apiKey } from '../environments/environment';
     LayoutComponent,
     HomeComponent,
     MapComponent,
-    ArticleComponent
+    ArticleComponent,
+    FishingPlaceComponent
   ],
   entryComponents: [
-    //ArticleComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { apiKey } from '../environments/environment';
     })
   ],
   providers: [
-      ArticleService
+      ArticleService,
+      FishingPlaceService
   ],
   bootstrap: [AppComponent]
 })

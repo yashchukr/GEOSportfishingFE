@@ -1,0 +1,9 @@
+<form>
+  <div class="form-group">
+    <label for="fishTypeFormControlSelect">Fish types select</label>
+    <select class="form-control input-sm" id="fishTypeFormControlSelect">
+      <option id="0">Select fish type</option>
+      <option *ngFor="let dicFishType of allFishTypes" id="{{dicFishType.fishTypeId}}">{{dicFishType.fishTypeName}}</option>
+    </select>
+  </div>
+</form>
