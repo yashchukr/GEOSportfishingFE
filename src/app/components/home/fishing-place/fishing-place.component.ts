@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FishType } from './fish-type';
+import { DicFishType } from './DicFishType';
 import { FishingPlaceService } from './fishing-place.service';
+import { DicFishKind } from './DicFishKind';
 
 @Component({
   selector: 'app-fishing-place',
@@ -11,13 +12,15 @@ import { FishingPlaceService } from './fishing-place.service';
 export class FishingPlaceComponent implements OnInit {
 
     //Component properties
-    allFishTypes: FishType[];
+    allFishTypes: DicFishType[];
+    allFishKinds: DicFishKind[];
     statusCode: number;
 
   constructor(private fishingPlaceService: FishingPlaceService) { }
 
     ngOnInit(): void {
         this.getAllFishTypes();
+        this.getAllFishKinds();
     }
 
     //Fetch all
@@ -25,6 +28,14 @@ export class FishingPlaceComponent implements OnInit {
         this.fishingPlaceService.getAllDicFishTypes()
             .subscribe(
                 data => this.allFishTypes = data,
+                errorCode =>  this.statusCode = errorCode);
+    }
+
+    //Fetch all
+    getAllFishKinds() {
+        this.fishingPlaceService.getAllDicFishKinds()
+            .subscribe(
+                data => this.allFishKinds = data,
                 errorCode =>  this.statusCode = errorCode);
     }
 
