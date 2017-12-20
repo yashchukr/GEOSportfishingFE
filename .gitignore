@@ -1,0 +1,25 @@
+Будет удалено .gitignore
+Будет удалено .idea/
+Будет удалено npm-debug.log
+
+*.txt
+*.md
+Будет удалено node_modules/fs-extra/docs/
+Будет удалено node_modules/icss-utils/node_modules/postcss/docs/
+Будет удалено node_modules/istanbul-reports/lib/html/templates/
+Будет удалено node_modules/istanbul-reports/node_modules/handlebars/docs/
+Будет удалено node_modules/jasmine-core/.github/
+Будет удалено node_modules/jasmine-spec-reporter/docs/
+Будет удалено node_modules/jasmine/node_modules/jasmine-core/.github/
+Будет удалено node_modules/nan/doc/
+Будет удалено node_modules/node-sass/src/libsass/.github/
+Будет удалено node_modules/postcss-modules-extract-imports/node_modules/postcss/docs/
+Будет удалено node_modules/postcss-modules-local-by-default/node_modules/postcss/docs/
+Будет удалено node_modules/postcss-modules-scope/node_modules/postcss/docs/
+Будет удалено node_modules/postcss-modules-values/node_modules/postcss/docs/
+Будет удалено node_modules/postcss/docs/
+Будет удалено node_modules/protractor/node_modules/webdriver-manager/docs/
+Будет удалено node_modules/readable-stream/doc/
+Будет удалено node_modules/reflect-metadata/spec/
+Будет удалено node_modules/style-loader/.github/
+Будет удалено node_modules/tslib/docs/
