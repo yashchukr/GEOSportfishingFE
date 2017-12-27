@@ -1,21 +1,41 @@
-<form>
+<div class="row">
+  <div class="col-sm-6 col-md-6">
 
-  <div class="form-group row">
-    <label for="fishKindFormControlSelect">Fish kind select</label>
+    <form [formGroup]="fishingPlaceForm">
 
-    <select class="form-control input-sm" id="fishKindFormControlSelect" data-live-search="true">
-      <!--<option id="0">Select fish type</option>-->
-      <option *ngFor="let dicFishKind of allFishKinds" id="{{dicFishKind.fishKindId}}">{{dicFishKind.fishKindName}}</option>
-    </select>
+      <div class="form-group row">
+        <label for="fishKindFormControlSelect">Fish kind select</label>
+
+        <select formControlName="fishKindFormControlSelect"
+                class="form-control input-sm"
+                id="fishKindFormControlSelect"
+                (change) = "getAllFishTypeByKindId();">
+          <!--<option id="0">Select fish type</option>-->
+          <option *ngFor="let dicFishKind of allFishKinds"
+                  value="{{dicFishKind.fishKindId}}">{{dicFishKind.fishKindName}}
+          </option>
+        </select>
+
+        <label *ngIf="fishingPlaceForm.get('fishKindFormControlSelect').invalid && processValidation"
+               [ngClass] = "'error'"> Title is required. </label>
+      </div>
+
+      <div class="form-group row">
+        <label for="fishTypeFormControlSelect">Fish type select</label>
+
+        <select formControlName = "fishTypeFormControlSelect"
+                class="form-control input-sm"
+                id="fishTypeFormControlSelect">
+          <!--<option id="0">Select fish type</option>-->
+          <option *ngFor="let dicFishType of allFishTypes"
+                  value="{{dicFishType.fishTypeId}}">{{dicFishType.fishTypeName}}
+          </option>
+        </select>
+        <label *ngIf="fishingPlaceForm.get('fishTypeFormControlSelect').invalid && processValidation"
+               [ngClass] = "'error'"> Title is required. </label>
+      </div>
+
+    </form>
+
   </div>
-
-  <div class="form-group row">
-    <label for="fishTypeFormControlSelect">Fish type select</label>
-
-    <select class="form-control input-sm" id="fishTypeFormControlSelect" data-live-search="true">
-      <!--<option id="0">Select fish type</option>-->
-      <option *ngFor="let dicFishType of allFishTypes" id="{{dicFishType.fishTypeId}}">{{dicFishType.fishTypeName}}</option>
-    </select>
-  </div>
-
-</form>
+</div>

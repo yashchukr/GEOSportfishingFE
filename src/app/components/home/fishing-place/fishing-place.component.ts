@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DicFishType } from './DicFishType';
 import { FishingPlaceService } from './fishing-place.service';
 import { DicFishKind } from './DicFishKind';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-fishing-place',
@@ -11,10 +12,15 @@ import { DicFishKind } from './DicFishKind';
 })
 export class FishingPlaceComponent implements OnInit {
 
-    //Component properties
+    // Component properties
     allFishTypes: DicFishType[];
     allFishKinds: DicFishKind[];
     statusCode: number;
+    //Create form
+    fishingPlaceForm = new FormGroup({
+        fishKindFormControlSelect: new FormControl('', Validators.required),
+        fishTypeFormControlSelect: new FormControl('', Validators.required)
+    });
 
   constructor(private fishingPlaceService: FishingPlaceService) { }
 
@@ -23,7 +29,7 @@ export class FishingPlaceComponent implements OnInit {
         this.getAllFishKinds();
     }
 
-    //Fetch all
+    // Fetch all
     getAllFishTypes() {
         this.fishingPlaceService.getAllDicFishTypes()
             .subscribe(
@@ -31,12 +37,28 @@ export class FishingPlaceComponent implements OnInit {
                 errorCode =>  this.statusCode = errorCode);
     }
 
-    //Fetch all
+    // Fetch all
     getAllFishKinds() {
         this.fishingPlaceService.getAllDicFishKinds()
             .subscribe(
                 data => this.allFishKinds = data,
                 errorCode =>  this.statusCode = errorCode);
+    }
+
+    getAllFishTypeByKindId() {
+        const fishTypeKindValue = this.fishingPlaceForm.get('fishKindFormControlSelect').value.trim();
+
+        const onSelf = this.allFishKinds;
+        let dicFishTypes;
+
+        for (let i = 0; i < onSelf.length; ++i) {
+            if (onSelf[i].fishKindId == fishTypeKindValue){
+                dicFishTypes = onSelf[i].dicFishTypeSet;
+                console.log(dicFishTypes);
+            }
+        }
+
+        this.allFishTypes = dicFishTypes;
     }
 
 }

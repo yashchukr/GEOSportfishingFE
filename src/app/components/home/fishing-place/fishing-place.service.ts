@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { DicFishType } from './DicFishType';
-import {DicFishKind} from './DicFishKind';
+import { DicFishKind } from './DicFishKind';
 
 @Injectable()
 export class FishingPlaceService {
@@ -12,16 +12,26 @@ export class FishingPlaceService {
     allDicFishTypesUrl = "http://localhost:8080/all-dicfishtypes";
     allDicFishKindsUrl = "http://localhost:8080/all-dicfishkinds";
 
-  constructor(private http:Http) {
+  constructor(private http: Http) {
   }
-    //Fetch all Fish Types
+    // Fetch all Fish Types
     getAllDicFishTypes(): Observable<DicFishType[]> {
         return this.http.get(this.allDicFishTypesUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    //Fetch all Fish Types
+    getAllDicFishTypeByKindId(fishTypeKindId: string): Observable<DicFishType[]> {
+      return this.http.get(this.allDicFishTypesUrl, {
+          params: {
+              id: fishTypeKindId
+          }
+      })
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    // Fetch all Fish Kinds
     getAllDicFishKinds(): Observable<DicFishKind[]> {
         return this.http.get(this.allDicFishKindsUrl)
             .map(this.extractData)
